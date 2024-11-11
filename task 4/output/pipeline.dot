@@ -1,0 +1,15 @@
+digraph G {
+"quality_score:" -> "$(FLAGSTAT_RES)";
+"$(FLAGSTAT_RES):" -> "$(BAM_FILE)";
+"$(REF_INDEX):" -> "$(REF)";
+"$(SAM_FILE):" -> "$(REF_INDEX)";
+"$(BAM_FILE):" -> "$(SAM_FILE)";
+"$(SORTED_BAM):" -> "$(BAM_FILE)";
+"index_sorted:" -> "$(SORTED_BAM)";
+"$(FREEBAYES_RES):" -> "index_sorted";
+".PHONY:" -> "clean";
+"clean:" -> "";
+".PHONY:" -> "visualize";
+"visualize:" -> "$(VISUALIZE_FILE_DOT)";
+"$(VISUALIZE_FILE_DOT):" -> "Makefile";
+}
